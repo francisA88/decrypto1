@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merchant Dashboard</title>
+    <link rel="stylesheet" href="{%static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{%static 'css/dashboard.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <!-- <img src="logo.svg" alt="Decrypto Logo"> -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coins h-8 w-8 text-purple-500"><circle cx="8" cy="8" r="6"></circle><path d="M18.09 10.37A6 6 0 1 1 10.34 18"></path><path d="M7 6h1v4"></path><path d="m16.71 13.88.7.71-2.82 2.82"></path></svg>
+                <span>Decrypto</span>
+            </div>
+            <div class="auth-buttons">
+                <a href="/pre" class="btn btn-text">Sign In</a>
+                <a href="/createuser" class="btn btn-primary">Get Started</a>
+            </div>
+        </nav>
+    </header>
+    
+    <main class="dashboard">
+        <aside class="dashboard-sidebar">
+            <div class="merchant-info">
+                <div class="merchant-avatar"></div>
+                <h2>{{merchant.name}}</h2>
+                <p>{{merchant.email}}</p>
+            </div>
+            <nav class="dashboard-nav">
+                <a href="#trans" class="active">Transactions</a>
+                <a href="#">Bank Details</a>
+                <a href="#">Settings</a>
+            </nav>
+        </aside>
+        
+        <section class="dashboard-main">
+            <div class="dashboard-header">
+                <h1>Transactions</h1>
+                <div class="date-filter">
+                    <select>
+                        <option>Last 7 days</option>
+                        <option>Last 30 days</option>
+                        <option>All time</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="transactions-table" id="trans">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Amount (Crypto)</th>
+                            <th>Amount (Fiat)</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example transaction -->
+                        <tr>
+                            <td>2024-12-13</td>
+                            <td>Product Purchase</td>
+                            <td>0.005 BTC</td>
+                            <td>$200.00</td>
+                            <td><span class="status completed">Completed</span></td>
+                        </tr>
+                        {% for transaction in transactions %}
+                        <tr>
+                            <td>{{transaction.created_at}}</td>
+                            <td>{{transaction.description}}</td>
+                            <td>{{transaction.amount_crypto}} SOL</td>
+                            <td>{{transaction.amount_fiat}}</td>
+                            <td><span class="status completed">{{transaction.status}}</span></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

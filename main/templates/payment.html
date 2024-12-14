@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Payment</title>
+    <link rel="stylesheet" href="{%static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{%static 'css/payment.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <!-- <img src="logo.svg" alt="Decrypto Logo"> -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coins h-8 w-8 text-purple-500"><circle cx="8" cy="8" r="6"></circle><path d="M18.09 10.37A6 6 0 1 1 10.34 18"></path><path d="M7 6h1v4"></path><path d="m16.71 13.88.7.71-2.82 2.82"></path></svg>
+                <span>Decrypto</span>
+            </div>
+            <div class="auth-buttons">
+                <a href="/pre" class="btn btn-text">Sign In</a>
+                <a href="/createuser" class="btn btn-primary">Get Started</a>
+            </div>
+        </nav>
+    </header>
+    
+    <main class="payment-container">
+        <div class="payment-card">
+            <h2>Payment Details</h2>
+            <div class="payment-info">
+                <div class="payment-row">
+                    <span>Description:</span>
+                    <p>{{details}}</p>
+                </div>
+                <div class="payment-row">
+                    <span>Amount:</span>
+                    <p>{{amount}} SOL</p>
+                </div>
+                <div class="payment-row">
+                    <span>Wallet Address:</span>
+                    <div class="wallet-address">
+                        <code>{{address}}</code>
+                        <button class="copy btn btn-text">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        const copyBtn = document.querySelector('.copy');
+        const code = document.querySelector('code');
+        function copyToClipboard(){
+            cb = new Clipboard()
+        }
+    </script>
+</body>
+</html>

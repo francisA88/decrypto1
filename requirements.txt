@@ -1,0 +1,4 @@
+solanapy
+django
+solders
+requests

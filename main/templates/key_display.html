@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Secret Key - Decrypto</title>
+    <link rel="stylesheet" href="{%static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{%static 'css/key_display.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coins h-8 w-8 text-purple-500"><circle cx="8" cy="8" r="6"></circle><path d="M18.09 10.37A6 6 0 1 1 10.34 18"></path><path d="M7 6h1v4"></path><path d="m16.71 13.88.7.71-2.82 2.82"></path></svg>
+                <span>Decrypto</span>
+            </div>
+            <div class="auth-buttons">
+                <a href="/pre" class="btn btn-text">Sign In</a>
+                <a href="/createuser" class="btn btn-primary">Get Started</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="key-generation-container">
+        <div class="key-generation-card">
+            <h1>Your Secret Key</h1>
+            <p class="warning">Important: Copy this key now. It will not be shown again!</p>
+            <div class="secret-key-display">
+                <h2 style="display:none" id="secret-key-full">{{sk_full}}</h2>
+                <code id="secret-key">{{sk}}...</code>
+                <button class="btn btn-secondary" onclick="copySecretKey()">Copy Key</button>
+            </div>
+            <p class="key-instructions">Store this key securely. You'll need it to access your account.</p>
+            <a href="/dashboard" class="btn btn-primary">Proceed to Dashboard</a>
+        </div>
+    </main>
+
+    <script>
+        function copySecretKey() {
+            const secretKey = document.getElementById('secret-key-full');
+            navigator.clipboard.writeText(secretKey.textContent)
+                .then(() => alert('Secret key copied to clipboard!'))
+                .catch(err => console.error('Failed to copy text: ', err));
+        }
+    </script>
+</body>
+</html>
